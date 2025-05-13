@@ -16,7 +16,6 @@ dependencies {
     compileOnly(libs.kotlin.gradle.plugin)
     compileOnly(libs.licensee.gradle.plugin)
     compileOnly(libs.ktlint.gradle.plugin)
-    compileOnly(libs.roborazzi.gradle.plugin)
 }
 
 ktlint {
@@ -29,21 +28,13 @@ gradlePlugin {
             id = libs.plugins.datastore.crypto.android.application.get().pluginId
             implementationClass = "AndroidApplicationPlugin"
         }
-        register("cybozuxAuthAndroidLibrary") {
+        register("androidLibrary") {
             id = libs.plugins.datastore.crypto.android.library.get().pluginId
-            implementationClass = "CybozuxAuthAndroidLibraryPlugin"
-        }
-        register("pureAndroidLibrary") {
-            id = libs.plugins.datastore.crypto.pure.android.library.get().pluginId
-            implementationClass = "PureAndroidLibraryPlugin"
+            implementationClass = "AndroidLibraryPlugin"
         }
         register("kotlinLibrary") {
             id = libs.plugins.datastore.crypto.kotlin.library.get().pluginId
             implementationClass = "KotlinLibraryPlugin"
-        }
-        register("screenshotTest") {
-            id = libs.plugins.datastore.crypto.screenshot.test.get().pluginId
-            implementationClass = "ScreenshotTestPlugin"
         }
         register("mavenPublish") {
             id = libs.plugins.datastore.crypto.maven.publish.get().pluginId

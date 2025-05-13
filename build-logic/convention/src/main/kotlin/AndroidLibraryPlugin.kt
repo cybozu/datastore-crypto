@@ -10,7 +10,7 @@ import com.cybozu.datastore.crypto.buildlogic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class PureAndroidLibraryPlugin : Plugin<Project> {
+class AndroidLibraryPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
