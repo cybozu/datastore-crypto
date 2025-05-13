@@ -61,7 +61,7 @@ class EncryptedPreferencesDataStoreTest {
     }
 
     @Test
-    fun `Can read and write data`() = runTest {
+    fun can_read_and_write_data() = runTest {
         context.testWithPreferencesDataStore(name = "read_write_preferences") { testDataStore ->
             allTypePreferences.forEach { testPreferenceType ->
                 val initialData = testDataStore.data.first()
@@ -76,7 +76,7 @@ class EncryptedPreferencesDataStoreTest {
     }
 
     @Test
-    fun `The file content is not directly interpretable as data`() = runTest {
+    fun the_file_content_is_not_directly_interpretable_as_data() = runTest {
         val secretName = "secret_preferences"
         context.testWithPreferencesDataStore(name = secretName) { testDataStore ->
             allTypePreferences.forEach { testPreferenceType ->
@@ -91,7 +91,7 @@ class EncryptedPreferencesDataStoreTest {
     }
 
     @Test
-    fun `Even if two DataStores with the same masterKeyAlias exist simultaneously, encryption is possible`() {
+    fun even_if_two_datastores_with_the_same_masterkeyalias_exist_simultaneously_encryption_is_possible() {
         val sharedMasterKeyAlias = "shared_master_key"
         parallelMultiEncryptedDataStoreTest(
             name1 = "same_master_key_preference1",
@@ -102,7 +102,7 @@ class EncryptedPreferencesDataStoreTest {
     }
 
     @Test
-    fun `Even if two DataStores with different masterKeyAlias exist simultaneously, encryption is possible`() {
+    fun even_if_two_datastores_with_different_masterkeyalias_exist_simultaneously_encryption_is_possible() {
         parallelMultiEncryptedDataStoreTest(
             name1 = "other_master_key_preference1",
             masterKeyAlias1 = "master_key1",
@@ -149,7 +149,7 @@ class EncryptedPreferencesDataStoreTest {
     }
 
     @Test
-    fun `Can persist data`() = runTest {
+    fun can_persist_data() = runTest {
         val dataStore1Job = Job()
 
         context.testWithPreferencesDataStore(name = "same_preferences_datastore", dataStoreJob = dataStore1Job) { testDataStore1 ->

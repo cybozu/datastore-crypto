@@ -32,7 +32,7 @@ class EncryptedDataStoreTest {
     }
 
     @Test
-    fun `Can read and write data`() = runTest {
+    fun can_read_and_write_data() = runTest {
         context.testWithDataStore(fileName = "read_write_test", defaultValue = "default") { testDataStore ->
             testDataStore.data.first() shouldBe "default"
             testDataStore.updateData { "new data" }
@@ -41,7 +41,7 @@ class EncryptedDataStoreTest {
     }
 
     @Test
-    fun `The file content is not directly interpretable as data`() = runTest {
+    fun the_file_content_is_not_directly_interpretable_as_data() = runTest {
         context.testWithDataStore(fileName = "my_password_file") { testDataStore ->
             testDataStore.updateData { "password1234" }
             val passwordFile = context.filesDir.findFileBy("my_password_file")
@@ -52,7 +52,7 @@ class EncryptedDataStoreTest {
     }
 
     @Test
-    fun `Two DataStores with the same masterKeyAlias can exist simultaneously and encrypt data`() {
+    fun two_datastores_with_the_same_masterkeyalias_can_exist_simultaneously_and_encrypt_data() {
         val sharedMasterKeyAlias = "shared_master_key"
         parallelMultiEncryptedDataStoreTest(
             fileName1 = "same_master_key_datastore1",
@@ -63,7 +63,7 @@ class EncryptedDataStoreTest {
     }
 
     @Test
-    fun `Two DataStores with different masterKeyAlias can exist simultaneously and encrypt data`() {
+    fun two_datastores_with_different_masterkeyalias_can_exist_simultaneously_and_encrypt_data() {
         parallelMultiEncryptedDataStoreTest(
             fileName1 = "other_master_key_datastore1",
             masterKeyAlias1 = "master_key1",
@@ -106,7 +106,7 @@ class EncryptedDataStoreTest {
     }
 
     @Test
-    fun `Can persist data`() = runTest {
+    fun can_persist_data() = runTest {
         val dataStore1Job = Job()
         context.testWithDataStore(fileName = "same_datastore", dataStoreJob = dataStore1Job) { testDataStore1 ->
             testDataStore1.updateData { "Hello world" }

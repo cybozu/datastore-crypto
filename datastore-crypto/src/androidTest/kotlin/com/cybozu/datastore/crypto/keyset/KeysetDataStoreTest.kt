@@ -27,14 +27,14 @@ class KeysetDataStoreTest {
     }
 
     @Test
-    fun `When there is no saved data in KeysetDataStore, returns an empty Keyset`() = runTest {
+    fun when_there_is_no_saved_data_in_keysetdatastore_returns_an_empty_keyset() = runTest {
         context.testWithKeysetDataStore(fileName = "empty_keyset") { keysetDataStore ->
             keysetDataStore.data.first() shouldBe EncryptedKeysetBinary.EMPTY
         }
     }
 
     @Test
-    fun `Can read and write Keyset`() = runTest {
+    fun can_read_and_write_keyset() = runTest {
         val newKeyset = EncryptedKeysetBinary(byteArrayOf(1, 2, 3))
 
         context.testWithKeysetDataStore(fileName = "read_write_keyset") { keysetDataStore ->
@@ -44,7 +44,7 @@ class KeysetDataStoreTest {
     }
 
     @Test
-    fun `When Keyset is saved and MasterKey exists, returns the saved Keyset`() = runTest {
+    fun when_keyset_is_saved_and_masterkey_exists_returns_the_saved_keyset() = runTest {
         AndroidKeystore.generateNewAes256GcmKey(testMasterKeyAlias)
         val storedKeyset = EncryptedKeysetBinary(byteArrayOf(1, 2, 3))
 
@@ -57,7 +57,7 @@ class KeysetDataStoreTest {
     }
 
     @Test
-    fun `When Keyset is saved but MasterKey is missing, returns KeysetStoredButMasterKeyMissing`() = runTest {
+    fun when_keyset_is_saved_but_masterkey_is_missing_returns_keysetstoredbutmasterkeymissing() = runTest {
         AndroidKeystore.deleteKey(testMasterKeyAlias)
         val storedKeyset = EncryptedKeysetBinary(byteArrayOf(1, 2, 3))
 
@@ -70,7 +70,7 @@ class KeysetDataStoreTest {
     }
 
     @Test
-    fun `When Keyset is not saved but MasterKey is stored, returns KeysetNotStoredButMasterKeyStored`() = runTest {
+    fun when_keyset_is_not_saved_but_masterkey_is_stored_returns_keysetnotstoredbutmasterkeystored() = runTest {
         AndroidKeystore.generateNewAes256GcmKey(testMasterKeyAlias)
 
         context.testWithKeysetDataStore(fileName = "missing_keyset_but_master_key_stored") { keysetDataStore ->
@@ -80,7 +80,7 @@ class KeysetDataStoreTest {
     }
 
     @Test
-    fun `When neither Keyset nor MasterKey is stored, returns KeysetNotStored`() = runTest {
+    fun when_neither_keyset_nor_masterkey_is_stored_returns_keysetnotstored() = runTest {
         AndroidKeystore.deleteKey(testMasterKeyAlias)
 
         context.testWithKeysetDataStore(fileName = "missing_keyset_and_master_key") { keysetDataStore ->
