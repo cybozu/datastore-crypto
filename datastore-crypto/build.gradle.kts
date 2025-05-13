@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.cybozu.cybozux.authentication.datastore.crypto"
+    namespace = "com.cybozu.datastore.crypto"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

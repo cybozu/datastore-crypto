@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.ktlint.gradle)
 }
 
-group = "com.cybozu.cybozux.authentication.buildlogic"
+group = "com.cybozu.datastore.crypto.buildlogic"
 
 java {
     toolchain {
