@@ -1,0 +1,26 @@
+name: 'Record Reference Screenshots'
+description: 'Record and upload reference screenshots for screenshot testing'
+inputs:
+  artifact-name:
+    description: 'Name of the artifact to store the reference screenshots'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: ./.github/actions/setup-java
+
+    - uses: gradle/actions/setup-gradle@v4
+
+    - name: Record reference screenshots
+      shell: bash
+      run: ./gradlew recordRoborazziDebug --tests "com.github.takahirom.roborazzi*"
+
+    - name: Upload reference screenshots
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}
+        retention-days: 90
+        path: |
+          ./**/build/outputs/roborazzi
