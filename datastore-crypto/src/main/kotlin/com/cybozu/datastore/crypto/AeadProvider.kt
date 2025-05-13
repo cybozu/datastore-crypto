@@ -21,8 +21,8 @@ internal fun AeadProvider(
 )
 
 /**
- * [Aead]のインスタンスを提供するクラス。
- * [Aead]インスタンスがなければ[keysetProvider]を使って作成し、メモリにキャッシュする。
+ * Provides an instance of [Aead].
+ * If there is no [Aead] instance, it will be created using [keysetProvider] and cached in memory.
  */
 internal class AeadProvider(
     private val keysetProvider: KeysetProvider,

@@ -20,15 +20,15 @@ import okio.FileSystem
 import okio.Path.Companion.toPath
 
 /**
- * [Preferences]を暗号化してセキュアに保存する[DataStore]を生成する。
- * この関数で作成されるDataStoreは単一のプロセスでのみの利用を前提としている。
+ * Creates a [DataStore] that securely stores [Preferences] in encrypted form.
+ * The DataStore created by this function is intended for use in a single process only.
  *
- * @param name Preferencesの名前。[name]は保存ファイルの名前に使用される。
- * ファイル名の詳細は[preferencesDataStoreFile]を参照すること。
- * @param masterKeyAlias [Preferences]を暗号化するために使用される暗号鍵 (MasterKey) のエイリアス。
- * MasterKey本体はAndroidKeystoreに保存される。
+ * @param name The name of the Preferences. [name] is used as the file name for storage.
+ * For details on the file name, refer to [preferencesDataStoreFile].
+ * @param masterKeyAlias The alias of the encryption key (MasterKey) used to encrypt [Preferences].
+ * The MasterKey itself is stored in the AndroidKeystore.
  *
- * その他のインターフェースは[androidx.datastore.preferences.preferencesDataStore]に準拠する。
+ * Other interfaces are based on [androidx.datastore.preferences.preferencesDataStore].
  */
 public fun encryptedPreferencesDataStore(
     name: String,

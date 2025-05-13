@@ -3,8 +3,8 @@ name: Update Gradle Wrapper
 on:
   workflow_dispatch:
   schedule:
-    # UTCで毎週日曜日の18時
-    # JSTで毎週月曜日の3時
+    # Every Sunday at 18:00 UTC
+    # Every Monday at 3:00 JST
     - cron: '0 18 * * 0'
 
 jobs:
@@ -19,5 +19,5 @@ jobs:
       - name: Update Gradle Wrapper
         uses: gradle-update/update-gradle-wrapper-action@512b1875f3b6270828abfe77b247d5895a2da1e5 # v2.1.0
         with:
-          labels: dependencies # gradle-wrapperというラベルも自動でつく
+          labels: dependencies # gradle-wrapper label will also be added automatically
           merge-method: MERGE

@@ -12,13 +12,13 @@ import kotlinx.coroutines.sync.withLock
 private val keystoreOperationMutex = Mutex()
 
 /**
- * データの暗号処理に使う暗号鍵を提供するクラス。
+ * A class that provides encryption keys used for data encryption.
  *
- * @param keysetDataStore 暗号鍵を保存するDataStore。
- * @param masterKeyAlias [keysetDataStore]で扱う鍵を暗号化するために使用される暗号鍵 (MasterKey) のエイリアス。
- * MasterKey本体はAndroidKeystoreに保存される。
- * @param keysetAssociatedData keysetを暗号化する際に使用するAEADの関連データ。
- * 同一の[masterKeyAlias]で複数のkeysetを保存する場合、keyset暗号化時に使用する関連データは異なる必要がある。
+ * @param keysetDataStore DataStore to save encryption keys.
+ * @param masterKeyAlias Alias of the encryption key (MasterKey) used to encrypt the keys handled by [keysetDataStore].
+ * The MasterKey itself is stored in the AndroidKeystore.
+ * @param keysetAssociatedData Associated data for AEAD used when encrypting the keyset.
+ * If multiple keysets are stored with the same [masterKeyAlias], the associated data used for keyset encryption must be different.
  */
 internal class KeysetProvider(
     private val keysetDataStore: KeysetDataStore,
@@ -26,13 +26,13 @@ internal class KeysetProvider(
     private val keysetAssociatedData: ByteArray,
 ) {
     /**
-     * 暗号鍵が保存されていればそれを返す。
-     * 保存されていなければ新しい暗号鍵を生成して保存した後、それを返す。
+     * Returns the encryption key if it is saved.
+     * If not saved, generates a new encryption key, saves it, and then returns it.
      *
-     * @return 暗号鍵を操作するための[KeysetHandle]。
+     * @return [KeysetHandle] to operate the encryption key.
      */
     suspend fun getKeyset(): KeysetHandle {
-        // AndroidKeystoreはスレッドセーフではないので、Keystoreへアクセスする操作をまるっと同期処理にしている
+        // AndroidKeystore is not thread-safe, so all operations accessing the Keystore are handled synchronously
         return keystoreOperationMutex.withLock {
             getOrCreateEncryptedKeyset()
         }
@@ -52,9 +52,9 @@ internal class KeysetProvider(
             }
 
             KeysetStatus.KeysetNotStoredButMasterKeyStored -> {
-                // この分岐の最も一般的なケースは、同一のMasterKeyで別のKeysetを暗号化するケース。
-                // DataStoreAに使ったMasterKeyを別のDataStoreBに使った場合、DataStoreAを作った時点でMasterKeyが生成されている。
-                // よって、DataStoreBの初期化時にはMasterKeyのみが存在する状態になる。
+                // The most common case for this branch is encrypting different Keysets with the same MasterKey.
+                // If you use the MasterKey from DataStoreA in another DataStoreB, the MasterKey is already generated when DataStoreA is created.
+                // Therefore, when initializing DataStoreB, only the MasterKey exists.
                 val newEncryptedKeyset = generateNewMasterKeyAndKeyset()
                 keysetDataStore.updateData { newEncryptedKeyset }
                 readKeyset(newEncryptedKeyset)

@@ -61,7 +61,7 @@ class EncryptedPreferencesDataStoreTest {
     }
 
     @Test
-    fun `データの読み書きができる`() = runTest {
+    fun `Can read and write data`() = runTest {
         context.testWithPreferencesDataStore(name = "read_write_preferences") { testDataStore ->
             allTypePreferences.forEach { testPreferenceType ->
                 val initialData = testDataStore.data.first()
@@ -76,7 +76,7 @@ class EncryptedPreferencesDataStoreTest {
     }
 
     @Test
-    fun `ファイルに書き込む内容は直接データを解釈できる形式ではない`() = runTest {
+    fun `The file content is not directly interpretable as data`() = runTest {
         val secretName = "secret_preferences"
         context.testWithPreferencesDataStore(name = secretName) { testDataStore ->
             allTypePreferences.forEach { testPreferenceType ->
@@ -91,7 +91,7 @@ class EncryptedPreferencesDataStoreTest {
     }
 
     @Test
-    fun `同一のmasterKeyAliasを指定した2つのDataStoreが同時に存在しても、暗号化できる`() {
+    fun `Even if two DataStores with the same masterKeyAlias exist simultaneously, encryption is possible`() {
         val sharedMasterKeyAlias = "shared_master_key"
         parallelMultiEncryptedDataStoreTest(
             name1 = "same_master_key_preference1",
@@ -102,7 +102,7 @@ class EncryptedPreferencesDataStoreTest {
     }
 
     @Test
-    fun `別々のmasterKeyAliasを指定した2つのDataStoreが同時に存在しても、暗号化できる`() {
+    fun `Even if two DataStores with different masterKeyAlias exist simultaneously, encryption is possible`() {
         parallelMultiEncryptedDataStoreTest(
             name1 = "other_master_key_preference1",
             masterKeyAlias1 = "master_key1",
@@ -149,15 +149,15 @@ class EncryptedPreferencesDataStoreTest {
     }
 
     @Test
-    fun `データを永続的に保存できている`() = runTest {
+    fun `Can persist data`() = runTest {
         val dataStore1Job = Job()
 
         context.testWithPreferencesDataStore(name = "same_preferences_datastore", dataStoreJob = dataStore1Job) { testDataStore1 ->
             testDataStore1.edit { it[stringKey] = "Hello world" }
         }
 
-        // アプリプロセスの終了を擬似的に再現
-        // 現在ファイルを開いているDataStoreを終了させる
+        // Simulate app process termination
+        // Terminate the currently open DataStore
         dataStore1Job.complete()
 
         context.testWithPreferencesDataStore(name = "same_preferences_datastore") { testDataStore2 ->

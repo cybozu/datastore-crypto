@@ -11,7 +11,7 @@ import okio.BufferedSink
 import okio.BufferedSource
 
 /**
- * [plainDataSerializer] で読み書きするデータを暗号化/復号する[androidx.datastore.core.okio.OkioSerializer]の実装。
+ * Implementation of [androidx.datastore.core.okio.OkioSerializer] that encrypts/decrypts data read/written with [plainDataSerializer].
  */
 @OptIn(ExperimentalEncodingApi::class)
 internal class GenericEncryptedSerializer<T>(

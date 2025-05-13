@@ -16,13 +16,13 @@ import kotlinx.coroutines.flow.first
 internal typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
 
 /**
- * 暗号鍵を保管するDataStoreを生成する。
- * このDataStoreは[encryptedDataStore]で生成したDataStoreが扱うデータを暗号化するために使用する。
- * [EncryptedKeysetBinary]はTinkによって暗号化された[com.google.crypto.tink.proto.Keyset]のバイナリであり、
- * この関数で作られたDataStore自身は暗号処理を行わない。
+ * Generates a DataStore to store encryption keys.
+ * This DataStore is used to encrypt the data handled by the DataStore generated with [encryptedDataStore].
+ * [EncryptedKeysetBinary] is a binary of [com.google.crypto.tink.proto.Keyset] encrypted by Tink,
+ * and the DataStore created by this function does not perform encryption itself.
  *
- * @param fileName 保存先であるファイルの名前。
- * @param scope KeysetDataStoreを動かすCoroutineScope。
+ * @param fileName The name of the file where it will be saved.
+ * @param scope CoroutineScope to run the KeysetDataStore.
  */
 internal fun keysetDataStore(
     fileName: String,
@@ -55,7 +55,7 @@ private object EncryptedKeysetBinarySerializer : Serializer<EncryptedKeysetBinar
 @JvmInline
 internal value class EncryptedKeysetBinary(val rawKeyset: ByteArray) {
 
-    // Keysetはセンシティブなデータなので、中のデータはPrintしない
+    // Since Keyset is sensitive data, the internal data is not printed
     override fun toString(): String = "EncryptedKeysetBinary@${hashCode().toString(16)}"
 
     companion object {

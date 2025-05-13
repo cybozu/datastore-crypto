@@ -32,7 +32,7 @@ class EncryptedDataStoreTest {
     }
 
     @Test
-    fun `データの読み書きができる`() = runTest {
+    fun `Can read and write data`() = runTest {
         context.testWithDataStore(fileName = "read_write_test", defaultValue = "default") { testDataStore ->
             testDataStore.data.first() shouldBe "default"
             testDataStore.updateData { "new data" }
@@ -41,7 +41,7 @@ class EncryptedDataStoreTest {
     }
 
     @Test
-    fun `ファイルに書き込む内容は直接データを解釈できる形式ではない`() = runTest {
+    fun `The file content is not directly interpretable as data`() = runTest {
         context.testWithDataStore(fileName = "my_password_file") { testDataStore ->
             testDataStore.updateData { "password1234" }
             val passwordFile = context.filesDir.findFileBy("my_password_file")
@@ -52,7 +52,7 @@ class EncryptedDataStoreTest {
     }
 
     @Test
-    fun `同一のmasterKeyAliasを指定した2つのDataStoreが同時に存在しても、暗号化できる`() {
+    fun `Two DataStores with the same masterKeyAlias can exist simultaneously and encrypt data`() {
         val sharedMasterKeyAlias = "shared_master_key"
         parallelMultiEncryptedDataStoreTest(
             fileName1 = "same_master_key_datastore1",
@@ -63,7 +63,7 @@ class EncryptedDataStoreTest {
     }
 
     @Test
-    fun `別々のmasterKeyAliasを指定した2つのDataStoreが同時に存在しても、暗号化できる`() {
+    fun `Two DataStores with different masterKeyAlias can exist simultaneously and encrypt data`() {
         parallelMultiEncryptedDataStoreTest(
             fileName1 = "other_master_key_datastore1",
             masterKeyAlias1 = "master_key1",
@@ -106,14 +106,14 @@ class EncryptedDataStoreTest {
     }
 
     @Test
-    fun `データを永続的に保存できている`() = runTest {
+    fun `Can persist data`() = runTest {
         val dataStore1Job = Job()
         context.testWithDataStore(fileName = "same_datastore", dataStoreJob = dataStore1Job) { testDataStore1 ->
             testDataStore1.updateData { "Hello world" }
         }
 
-        // アプリプロセスの終了を擬似的に再現
-        // 現在ファイルを開いているDataStoreを終了させる
+        // Simulate app process termination
+        // Terminate the currently open DataStore
         dataStore1Job.complete()
 
         context.testWithDataStore(fileName = "same_datastore") { testDataStore2 ->

@@ -23,8 +23,8 @@ class MavenPublishingPlugin : Plugin<Project> {
                 }
             }
 
-            // 認証情報の有無はpublishタスクの実行直前にチェックする
-            // こうしないと、publishタスクを実行する必要のない人も認証情報を設定しないとすべてのGradleタスクを実行できなくなる。
+            // Check the presence of credentials just before executing the publish task
+            // Otherwise, even people who do not need to run the publish task will not be able to run any Gradle tasks unless they set up credentials.
             configureGithubCredentialsLazily()
         }
     }

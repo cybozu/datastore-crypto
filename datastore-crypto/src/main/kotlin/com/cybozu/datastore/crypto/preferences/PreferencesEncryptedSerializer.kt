@@ -16,7 +16,7 @@ import okio.sink
 import okio.source
 
 /**
- * [Preferences]を暗号化/復号する[androidx.datastore.core.okio.OkioSerializer]の実装
+ * Implementation of [androidx.datastore.core.okio.OkioSerializer] that encrypts/decrypts [Preferences]
  */
 @OptIn(ExperimentalEncodingApi::class)
 internal class PreferencesEncryptedSerializer(
@@ -58,8 +58,8 @@ internal class PreferencesEncryptedSerializer(
         val bufferedSink = serializedData.sink().buffer()
         PreferencesSerializer.writeTo(t = preferences, sink = bufferedSink)
 
-        // データをOutputStreamに書き込むためにflush()を呼び出す
-        // PreferencesSerializerはflush()を呼び出さない
+        // Call flush() to write data to OutputStream
+        // PreferencesSerializer does not call flush()
         bufferedSink.flush()
 
         return serializedData.toByteArray()

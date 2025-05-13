@@ -19,16 +19,16 @@ import okio.FileSystem
 import okio.Path.Companion.toPath
 
 /**
- * データを暗号化してセキュアに扱う[DataStore]を生成する。
- * この関数で作成されるDataStoreは単一のプロセスでのみの利用を前提としている。
+ * Creates a [DataStore] that handles data securely in encrypted form.
+ * The DataStore created by this function is intended for use in a single process only.
  *
- * @param fileName 保存先であるファイルの名前。
- * @param serializer 暗号化対象のデータを読み書きするための[Serializer]。
- * このserializerは暗号処理を考慮せず、平文のままデータを扱っていることを期待する。
- * @param masterKeyAlias [T]を暗号化するために使用する暗号鍵 (MasterKey) のエイリアス。
- * MasterKey本体はAndroidKeystoreに保存される。
+ * @param fileName The name of the file to store data.
+ * @param serializer The [Serializer] for reading and writing the data to be encrypted.
+ * This serializer is expected to handle plain data without considering encryption processing.
+ * @param masterKeyAlias The alias of the encryption key (MasterKey) used to encrypt [T].
+ * The MasterKey itself is stored in the AndroidKeystore.
  *
- * その他のインターフェースは[androidx.datastore.dataStore]に準拠する。
+ * Other interfaces are based on [androidx.datastore.dataStore].
  */
 public fun <T> encryptedDataStore(
     fileName: String,
