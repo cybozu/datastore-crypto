@@ -3,10 +3,6 @@ package com.cybozu.datastore.crypto.keyset
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.cybozu.datastore.crypto.util.clearDataStore
-import com.cybozu.datastore.crypto.keyset.KeysetDataStore
-import com.cybozu.datastore.crypto.keyset.EncryptedKeysetBinary
-import com.cybozu.datastore.crypto.keyset.checkStatus
-import com.cybozu.datastore.crypto.keyset.KeysetStatus
 import com.google.crypto.tink.integration.android.AndroidKeystore
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.CoroutineScope

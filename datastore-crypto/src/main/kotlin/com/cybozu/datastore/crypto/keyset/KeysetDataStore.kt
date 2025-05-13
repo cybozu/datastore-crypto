@@ -27,12 +27,11 @@ internal typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
 internal fun keysetDataStore(
     fileName: String,
     scope: CoroutineScope,
-): ReadOnlyProperty<Context, KeysetDataStore> =
-    dataStore(
-        fileName = fileName,
-        serializer = EncryptedKeysetBinarySerializer,
-        scope = scope
-    )
+): ReadOnlyProperty<Context, KeysetDataStore> = dataStore(
+    fileName = fileName,
+    serializer = EncryptedKeysetBinarySerializer,
+    scope = scope
+)
 
 private object EncryptedKeysetBinarySerializer : Serializer<EncryptedKeysetBinary> {
     private val byteStringCharset: Charset

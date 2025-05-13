@@ -66,13 +66,12 @@ class MavenPublishingPlugin : Plugin<Project> {
         }
     }
 
-    private fun loadLocalProperties(rootProject: Project): Properties =
-        Properties().apply {
-            val localPropertiesFile = rootProject.file("local.properties")
-            if (localPropertiesFile.exists()) {
-                load(localPropertiesFile.inputStream())
-            }
+    private fun loadLocalProperties(rootProject: Project): Properties = Properties().apply {
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            load(localPropertiesFile.inputStream())
         }
+    }
 }
 
 private fun Project.publishing(action: PublishingExtension.() -> Unit) = extensions.configure(action)

@@ -66,20 +66,19 @@ internal class KeysetProvider(
         }
     }
 
-    private fun readKeyset(encryptedKeyset: EncryptedKeysetBinary): KeysetHandle =
-        try {
-            TinkProtoKeysetFormat.parseEncryptedKeyset(
-                encryptedKeyset.rawKeyset,
-                AndroidKeystore.getAead(masterKeyAlias),
-                keysetAssociatedData
-            )
-        } catch (cause: BadPaddingException) {
-            // @see https://github.com/tink-crypto/tink-java/blob/7d14939340c6f6e86991a872b25bb425586afc67/examples/android/helloworld/app/src/main/java/com/helloworld/TinkApplication.java#L132-L136
-            throw CorruptionException(
-                "Failed to decrypt the keyset. The encrypted keyset is corrupted, or it was encrypted with different master key.",
-                cause
-            )
-        }
+    private fun readKeyset(encryptedKeyset: EncryptedKeysetBinary): KeysetHandle = try {
+        TinkProtoKeysetFormat.parseEncryptedKeyset(
+            encryptedKeyset.rawKeyset,
+            AndroidKeystore.getAead(masterKeyAlias),
+            keysetAssociatedData
+        )
+    } catch (cause: BadPaddingException) {
+        // @see https://github.com/tink-crypto/tink-java/blob/7d14939340c6f6e86991a872b25bb425586afc67/examples/android/helloworld/app/src/main/java/com/helloworld/TinkApplication.java#L132-L136
+        throw CorruptionException(
+            "Failed to decrypt the keyset. The encrypted keyset is corrupted, or it was encrypted with different master key.",
+            cause
+        )
+    }
 
     private fun generateNewMasterKeyAndKeyset(): EncryptedKeysetBinary {
         AndroidKeystore.generateNewAes256GcmKey(masterKeyAlias)
