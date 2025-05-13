@@ -1,4 +1,4 @@
-package com.cybozu.cybozux.authentication.buildlogic.convention
+package com.cybozu.datastore.crypto.buildlogic.convention
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog

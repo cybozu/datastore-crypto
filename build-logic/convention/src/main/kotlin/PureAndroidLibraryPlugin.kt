@@ -1,12 +1,12 @@
 import com.android.build.api.dsl.LibraryExtension
-import com.cybozu.cybozux.authentication.buildlogic.convention.android
-import com.cybozu.cybozux.authentication.buildlogic.convention.configureAndroidCommon
-import com.cybozu.cybozux.authentication.buildlogic.convention.configureKotlinCommon
-import com.cybozu.cybozux.authentication.buildlogic.convention.configureLicenseCheck
-import com.cybozu.cybozux.authentication.buildlogic.convention.configureLint
-import com.cybozu.cybozux.authentication.buildlogic.convention.getPluginId
-import com.cybozu.cybozux.authentication.buildlogic.convention.kotlinAndroid
-import com.cybozu.cybozux.authentication.buildlogic.convention.libs
+import com.cybozu.datastore.crypto.buildlogic.convention.android
+import com.cybozu.datastore.crypto.buildlogic.convention.configureAndroidCommon
+import com.cybozu.datastore.crypto.buildlogic.convention.configureKotlinCommon
+import com.cybozu.datastore.crypto.buildlogic.convention.configureLicenseCheck
+import com.cybozu.datastore.crypto.buildlogic.convention.configureLint
+import com.cybozu.datastore.crypto.buildlogic.convention.getPluginId
+import com.cybozu.datastore.crypto.buildlogic.convention.kotlinAndroid
+import com.cybozu.datastore.crypto.buildlogic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

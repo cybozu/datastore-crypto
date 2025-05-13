@@ -1,4 +1,4 @@
-package com.cybozu.cybozux.authentication.buildlogic.convention
+package com.cybozu.datastore.crypto.buildlogic.convention
 
 import app.cash.licensee.LicenseeExtension
 import org.gradle.api.Project

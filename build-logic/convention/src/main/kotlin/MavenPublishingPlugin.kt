@@ -1,5 +1,5 @@
-import com.cybozu.cybozux.authentication.buildlogic.convention.getPluginId
-import com.cybozu.cybozux.authentication.buildlogic.convention.libs
+import com.cybozu.datastore.crypto.buildlogic.convention.getPluginId
+import com.cybozu.datastore.crypto.buildlogic.convention.libs
 import java.util.Properties
 import org.gradle.api.Plugin
 import org.gradle.api.Project

@@ -1,9 +1,9 @@
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.gradle.BaseExtension
-import com.cybozu.cybozux.authentication.buildlogic.convention.android
-import com.cybozu.cybozux.authentication.buildlogic.convention.applyIfAndroidModule
-import com.cybozu.cybozux.authentication.buildlogic.convention.getPluginId
-import com.cybozu.cybozux.authentication.buildlogic.convention.libs
+import com.cybozu.datastore.crypto.buildlogic.convention.android
+import com.cybozu.datastore.crypto.buildlogic.convention.applyIfAndroidModule
+import com.cybozu.datastore.crypto.buildlogic.convention.getPluginId
+import com.cybozu.datastore.crypto.buildlogic.convention.libs
 import io.github.takahirom.roborazzi.RoborazziExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project

@@ -1,9 +1,9 @@
-import com.cybozu.cybozux.authentication.buildlogic.convention.configureKotlinCommon
-import com.cybozu.cybozux.authentication.buildlogic.convention.configureLicenseCheck
-import com.cybozu.cybozux.authentication.buildlogic.convention.configureLint
-import com.cybozu.cybozux.authentication.buildlogic.convention.getPluginId
-import com.cybozu.cybozux.authentication.buildlogic.convention.kotlinJvm
-import com.cybozu.cybozux.authentication.buildlogic.convention.libs
+import com.cybozu.datastore.crypto.buildlogic.convention.configureKotlinCommon
+import com.cybozu.datastore.crypto.buildlogic.convention.configureLicenseCheck
+import com.cybozu.datastore.crypto.buildlogic.convention.configureLint
+import com.cybozu.datastore.crypto.buildlogic.convention.getPluginId
+import com.cybozu.datastore.crypto.buildlogic.convention.kotlinJvm
+import com.cybozu.datastore.crypto.buildlogic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
