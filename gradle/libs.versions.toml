@@ -101,12 +101,12 @@ licensee = { id = "app.cash.licensee", version.ref = "licensee" }
 
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 
-cybozux-authentication-android-application = { id = "com.cybozux.authentication.android.application" }
-cybozux-authentication-android-library = { id = "com.cybozux.authentication.android.library" }
-cybozux-authentication-pure-android-library = { id = "com.cybozux.authentication.pure.android.library" }
-cybozux-authentication-kotlin-library = { id = "com.cybozux.authentication.kotlin.library" }
-cybozux-authentication-screenshot-test = { id = "com.cybozux.authentication.screenshot.test" }
-cybozux-authentication-maven-publish = { id = "cybozux.authentication.maven.publish" }
+datastore-crypto-android-application = { id = "com.cybozu.datastore.crypto.android.application" }
+datastore-crypto-android-library = { id = "com.cybozu.datastore.crypto.android.library" }
+datastore-crypto-pure-android-library = { id = "com.cybozu.datastore.crypto.pure.android.library" }
+datastore-crypto-kotlin-library = { id = "com.cybozu.datastore.crypto.kotlin.library" }
+datastore-crypto-screenshot-test = { id = "com.cybozu.datastore.crypto.screenshot.test" }
+datastore-crypto-maven-publish = { id = "com.cybozu.datastore.crypto.maven.publish" }
 
 [bundles]
 robolectric-junit-test = [

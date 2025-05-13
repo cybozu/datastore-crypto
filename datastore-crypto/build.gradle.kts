@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.cybozux.authentication.pure.android.library)
-    alias(libs.plugins.cybozux.authentication.maven.publish)
+    alias(libs.plugins.datastore.crypto.pure.android.library)
+    alias(libs.plugins.datastore.crypto.maven.publish)
 }
 
 android {
