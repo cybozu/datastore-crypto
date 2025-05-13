@@ -9,7 +9,7 @@ permissions:
 jobs:
   dependabot-auto-merge:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'cybozu-private/cybozux.authentication'
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'cybozu/datastore-crypto'
     steps:
       - name: Dependabot metadata
         id: dependabot-metadata
