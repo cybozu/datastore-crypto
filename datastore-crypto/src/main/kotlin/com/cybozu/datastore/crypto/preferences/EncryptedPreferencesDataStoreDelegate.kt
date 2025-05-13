@@ -1,4 +1,4 @@
-package com.cybozu.cybozux.authentication.datastore.crypto.preferences
+package com.cybozu.datastore.crypto.preferences
 
 import android.content.Context
 import androidx.annotation.GuardedBy
@@ -9,8 +9,8 @@ import androidx.datastore.core.okio.OkioStorage
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.cybozu.cybozux.authentication.datastore.crypto.AeadProvider
-import com.cybozu.cybozux.authentication.datastore.crypto.keyset.keysetDataStore
+import com.cybozu.datastore.crypto.AeadProvider
+import com.cybozu.datastore.crypto.keyset.keysetDataStore
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 import kotlinx.coroutines.CoroutineScope

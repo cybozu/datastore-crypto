@@ -1,10 +1,10 @@
-package com.cybozu.cybozux.authentication.datastore.crypto.preferences
+package com.cybozu.datastore.crypto.preferences
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.okio.OkioSerializer
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.PreferencesSerializer
-import com.cybozu.cybozux.authentication.datastore.crypto.AeadProvider
+import com.cybozu.datastore.crypto.AeadProvider
 import java.io.ByteArrayOutputStream
 import java.security.GeneralSecurityException
 import kotlin.io.encoding.Base64

@@ -1,4 +1,4 @@
-package com.cybozu.cybozux.authentication.datastore.crypto
+package com.cybozu.datastore.crypto
 
 import android.content.Context
 import androidx.annotation.GuardedBy
@@ -9,7 +9,7 @@ import androidx.datastore.core.Serializer
 import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.core.okio.OkioStorage
 import androidx.datastore.dataStoreFile
-import com.cybozu.cybozux.authentication.datastore.crypto.keyset.keysetDataStore
+import com.cybozu.datastore.crypto.keyset.keysetDataStore
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 import kotlinx.coroutines.CoroutineScope

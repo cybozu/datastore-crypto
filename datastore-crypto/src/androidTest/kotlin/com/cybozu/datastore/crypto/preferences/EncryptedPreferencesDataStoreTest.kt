@@ -1,4 +1,4 @@
-package com.cybozu.cybozux.authentication.datastore.crypto.preferences
+package com.cybozu.datastore.crypto.preferences
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -14,8 +14,8 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.test.core.app.ApplicationProvider
-import com.cybozu.cybozux.authentication.datastore.crypto.util.clearDataStore
-import com.cybozu.cybozux.authentication.datastore.crypto.util.findFileBy
+import com.cybozu.datastore.crypto.util.clearDataStore
+import com.cybozu.datastore.crypto.util.findFileBy
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldNotBeBlank

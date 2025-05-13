@@ -1,7 +1,7 @@
-package com.cybozu.cybozux.authentication.datastore.crypto
+package com.cybozu.datastore.crypto
 
-import com.cybozu.cybozux.authentication.datastore.crypto.keyset.KeysetDataStore
-import com.cybozu.cybozux.authentication.datastore.crypto.keyset.KeysetProvider
+import com.cybozu.datastore.crypto.keyset.KeysetDataStore
+import com.cybozu.datastore.crypto.keyset.KeysetProvider
 import com.google.crypto.tink.Aead
 import com.google.crypto.tink.RegistryConfiguration
 import com.google.crypto.tink.config.TinkConfig

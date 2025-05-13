@@ -1,4 +1,4 @@
-package com.cybozu.cybozux.authentication.datastore.crypto.util
+package com.cybozu.datastore.crypto.util
 
 import android.content.Context
 import java.io.File

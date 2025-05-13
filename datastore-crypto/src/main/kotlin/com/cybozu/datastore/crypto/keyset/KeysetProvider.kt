@@ -1,4 +1,4 @@
-package com.cybozu.cybozux.authentication.datastore.crypto.keyset
+package com.cybozu.datastore.crypto.keyset
 
 import androidx.datastore.core.CorruptionException
 import com.google.crypto.tink.KeysetHandle

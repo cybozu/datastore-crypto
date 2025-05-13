@@ -1,4 +1,4 @@
-package com.cybozu.cybozux.authentication.datastore.crypto.keyset
+package com.cybozu.datastore.crypto.keyset
 
 import android.content.Context
 import androidx.datastore.core.DataStore

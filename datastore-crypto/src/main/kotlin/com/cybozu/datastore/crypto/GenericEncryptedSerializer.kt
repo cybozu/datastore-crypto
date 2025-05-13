@@ -1,4 +1,4 @@
-package com.cybozu.cybozux.authentication.datastore.crypto
+package com.cybozu.datastore.crypto
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
