@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
+import com.cybozu.datastore.crypto.internal.DataStoreCryptoInternalApi
 import com.google.crypto.tink.integration.android.AndroidKeystore
 import com.google.crypto.tink.subtle.Hex
 import java.io.InputStream
@@ -13,7 +14,15 @@ import kotlin.properties.ReadOnlyProperty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 
-internal typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
+/**
+ * A typealias for a [DataStore] that stores [EncryptedKeysetBinary] objects.
+ *
+ * This typealias simplifies the usage of DataStore for managing encrypted keysets.
+ * [EncryptedKeysetBinary] represents a binary of an encrypted keyset, and this DataStore
+ * does not perform encryption itself but stores the encrypted data.
+ */
+@DataStoreCryptoInternalApi
+public typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
 
 /**
  * Generates a DataStore to store encryption keys.
@@ -23,8 +32,11 @@ internal typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
  *
  * @param fileName The name of the file where it will be saved.
  * @param scope CoroutineScope to run the KeysetDataStore.
+ * @return A [ReadOnlyProperty] that provides access to a [KeysetDataStore], which is a DataStore for managing
+ * encrypted keysets.
  */
-internal fun keysetDataStore(
+@DataStoreCryptoInternalApi
+public fun keysetDataStore(
     fileName: String,
     scope: CoroutineScope,
 ): ReadOnlyProperty<Context, KeysetDataStore> = dataStore(
@@ -51,14 +63,15 @@ private object EncryptedKeysetBinarySerializer : Serializer<EncryptedKeysetBinar
     }
 }
 
+@DataStoreCryptoInternalApi
 @JvmInline
-internal value class EncryptedKeysetBinary(val rawKeyset: ByteArray) {
+public value class EncryptedKeysetBinary internal constructor(internal val rawKeyset: ByteArray) {
 
     // Since Keyset is sensitive data, the internal data is not printed
     override fun toString(): String = "EncryptedKeysetBinary@${hashCode().toString(16)}"
 
-    companion object {
-        val EMPTY: EncryptedKeysetBinary = EncryptedKeysetBinary(ByteArray(size = 0))
+    public companion object {
+        public val EMPTY: EncryptedKeysetBinary = EncryptedKeysetBinary(ByteArray(size = 0))
     }
 }
 

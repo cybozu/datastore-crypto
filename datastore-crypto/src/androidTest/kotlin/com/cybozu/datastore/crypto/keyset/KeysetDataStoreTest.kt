@@ -2,7 +2,7 @@ package com.cybozu.datastore.crypto.keyset
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
-import com.cybozu.datastore.crypto.util.clearDataStore
+import com.cybozu.datastore.testing.clearDataStore
 import com.google.crypto.tink.integration.android.AndroidKeystore
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.CoroutineScope

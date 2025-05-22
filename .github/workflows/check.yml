@@ -33,9 +33,6 @@ jobs:
       - name: Run local tests
         run: ./gradlew testDebugUnitTest
 
-      - name: Build sample app
-        run: ./gradlew :sample-app:assembleDebug
-
       - name: Upload check results
         if: always()
         uses: actions/upload-artifact@v4

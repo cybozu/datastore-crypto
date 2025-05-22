@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.test.core.app.ApplicationProvider
-import com.cybozu.datastore.crypto.util.clearDataStore
-import com.cybozu.datastore.crypto.util.findFileBy
+import com.cybozu.datastore.testing.clearDataStore
+import com.cybozu.datastore.testing.findFileBy
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldNotBeBlank
 import io.kotest.matchers.string.shouldNotContainIgnoringCase
