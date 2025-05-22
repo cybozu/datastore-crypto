@@ -13,6 +13,13 @@ import kotlin.properties.ReadOnlyProperty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 
+/**
+ * A typealias for a [DataStore] that stores [EncryptedKeysetBinary] objects.
+ *
+ * This typealias simplifies the usage of DataStore for managing encrypted keysets.
+ * [EncryptedKeysetBinary] represents a binary of an encrypted keyset, and this DataStore
+ * does not perform encryption itself but stores the encrypted data.
+ */
 public typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
 
 /**
