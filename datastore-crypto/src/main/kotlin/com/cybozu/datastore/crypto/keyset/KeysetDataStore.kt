@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
+import com.cybozu.datastore.crypto.internal.DataStoreCryptoInternalApi
 import com.google.crypto.tink.integration.android.AndroidKeystore
 import com.google.crypto.tink.subtle.Hex
 import java.io.InputStream
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.first
  * [EncryptedKeysetBinary] represents a binary of an encrypted keyset, and this DataStore
  * does not perform encryption itself but stores the encrypted data.
  */
+@DataStoreCryptoInternalApi
 public typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
 
 /**
@@ -30,7 +32,10 @@ public typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
  *
  * @param fileName The name of the file where it will be saved.
  * @param scope CoroutineScope to run the KeysetDataStore.
+ * @return A [ReadOnlyProperty] that provides access to a [KeysetDataStore], which is a DataStore for managing
+ * encrypted keysets.
  */
+@DataStoreCryptoInternalApi
 public fun keysetDataStore(
     fileName: String,
     scope: CoroutineScope,
@@ -58,6 +63,7 @@ private object EncryptedKeysetBinarySerializer : Serializer<EncryptedKeysetBinar
     }
 }
 
+@DataStoreCryptoInternalApi
 @JvmInline
 public value class EncryptedKeysetBinary internal constructor(internal val rawKeyset: ByteArray) {
 

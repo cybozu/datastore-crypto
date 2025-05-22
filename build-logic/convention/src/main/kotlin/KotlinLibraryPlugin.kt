@@ -4,6 +4,7 @@ import com.cybozu.datastore.crypto.buildlogic.convention.configureLint
 import com.cybozu.datastore.crypto.buildlogic.convention.getPluginId
 import com.cybozu.datastore.crypto.buildlogic.convention.kotlinJvm
 import com.cybozu.datastore.crypto.buildlogic.convention.libs
+import com.cybozu.datastore.crypto.buildlogic.convention.useDataStoreCryptoInternalApi
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -17,6 +18,7 @@ class KotlinLibraryPlugin : Plugin<Project> {
             kotlinJvm {
                 explicitApi()
                 configureKotlinCommon(this)
+                useDataStoreCryptoInternalApi()
             }
             configureLicenseCheck()
             configureLint()
