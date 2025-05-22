@@ -46,7 +46,6 @@ licensee = { id = "app.cash.licensee", version.ref = "licensee" }
 datastore-crypto-android-application = { id = "com.cybozu.datastore.crypto.android.application" }
 datastore-crypto-android-library = { id = "com.cybozu.datastore.crypto.android.library" }
 datastore-crypto-kotlin-library = { id = "com.cybozu.datastore.crypto.kotlin.library" }
-datastore-crypto-maven-publish = { id = "com.cybozu.datastore.crypto.maven.publish" }
 
 [bundles]
 robolectric-junit-test = [
