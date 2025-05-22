@@ -1,8 +1,8 @@
-package com.cybozu.datastore.crypto.util
+package com.cybozu.datastore.testing
 
 import android.content.Context
 import java.io.File
 
-internal fun Context.clearDataStore() {
+public fun Context.clearDataStore() {
     File(filesDir, "/datastore").deleteRecursively()
 }

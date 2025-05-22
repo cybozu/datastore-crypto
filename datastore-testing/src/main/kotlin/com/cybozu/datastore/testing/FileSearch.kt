@@ -1,8 +1,8 @@
-package com.cybozu.datastore.crypto.util
+package com.cybozu.datastore.testing
 
 import java.io.File
 
-internal fun File.findFileBy(fileName: String): File? = searchFileRecursively(directory = this, fileName)
+public fun File.findFileBy(fileName: String): File? = searchFileRecursively(directory = this, fileName)
 
 private fun searchFileRecursively(directory: File, fileName: String): File? {
     directory.listFiles()?.forEach { file ->

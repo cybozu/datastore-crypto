@@ -8,7 +8,7 @@ import com.google.crypto.tink.config.TinkConfig
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
-internal fun AeadProvider(
+public fun AeadProvider(
     keysetDataStore: KeysetDataStore,
     masterKeyAlias: String,
     keysetAssociatedData: ByteArray,
@@ -24,13 +24,17 @@ internal fun AeadProvider(
  * Provides an instance of [Aead].
  * If there is no [Aead] instance, it will be created using [keysetProvider] and cached in memory.
  */
-internal class AeadProvider(
+public class AeadProvider internal constructor(
     private val keysetProvider: KeysetProvider,
 ) {
     private val writeCacheMutex = Mutex()
     private var cachedAead: Aead? = null
 
-    suspend fun getAead(): Aead = cachedAead ?: writeCacheMutex.withLock {
+    /**
+     * Returns an instance of [Aead].
+     * If there is no [Aead] instance, it will be created using [keysetProvider] and cached in memory.
+     */
+    public suspend fun getAead(): Aead = cachedAead ?: writeCacheMutex.withLock {
         createAead().also {
             cachedAead = it
         }

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.cybozu.datastore.crypto"
+    namespace = "com.cybozu.datastore.crypto.preferences"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -12,7 +12,8 @@ android {
 }
 
 dependencies {
-    api(libs.androidx.datastore)
+    api(project(":datastore-crypto"))
+    api(libs.androidx.datastore.preferences)
     implementation(libs.tink.android)
 
     androidTestImplementation(project(":datastore-testing"))

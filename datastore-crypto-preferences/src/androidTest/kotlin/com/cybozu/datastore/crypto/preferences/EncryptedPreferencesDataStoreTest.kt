@@ -14,8 +14,8 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.test.core.app.ApplicationProvider
-import com.cybozu.datastore.crypto.util.clearDataStore
-import com.cybozu.datastore.crypto.util.findFileBy
+import com.cybozu.datastore.testing.clearDataStore
+import com.cybozu.datastore.testing.findFileBy
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldNotBeBlank

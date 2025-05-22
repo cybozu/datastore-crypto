@@ -13,7 +13,7 @@ import kotlin.properties.ReadOnlyProperty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 
-internal typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
+public typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
 
 /**
  * Generates a DataStore to store encryption keys.
@@ -24,7 +24,7 @@ internal typealias KeysetDataStore = DataStore<EncryptedKeysetBinary>
  * @param fileName The name of the file where it will be saved.
  * @param scope CoroutineScope to run the KeysetDataStore.
  */
-internal fun keysetDataStore(
+public fun keysetDataStore(
     fileName: String,
     scope: CoroutineScope,
 ): ReadOnlyProperty<Context, KeysetDataStore> = dataStore(
@@ -52,13 +52,13 @@ private object EncryptedKeysetBinarySerializer : Serializer<EncryptedKeysetBinar
 }
 
 @JvmInline
-internal value class EncryptedKeysetBinary(val rawKeyset: ByteArray) {
+public value class EncryptedKeysetBinary internal constructor(internal val rawKeyset: ByteArray) {
 
     // Since Keyset is sensitive data, the internal data is not printed
     override fun toString(): String = "EncryptedKeysetBinary@${hashCode().toString(16)}"
 
-    companion object {
-        val EMPTY: EncryptedKeysetBinary = EncryptedKeysetBinary(ByteArray(size = 0))
+    public companion object {
+        public val EMPTY: EncryptedKeysetBinary = EncryptedKeysetBinary(ByteArray(size = 0))
     }
 }
 
