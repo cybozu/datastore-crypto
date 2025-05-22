@@ -18,10 +18,10 @@ class KotlinLibraryPlugin : Plugin<Project> {
             kotlinJvm {
                 explicitApi()
                 configureKotlinCommon(this)
-                useDataStoreCryptoInternalApi()
             }
             configureLicenseCheck()
             configureLint()
+            useDataStoreCryptoInternalApi()
         }
     }
 }

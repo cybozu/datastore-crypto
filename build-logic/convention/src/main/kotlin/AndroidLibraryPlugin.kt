@@ -22,7 +22,6 @@ class AndroidLibraryPlugin : Plugin<Project> {
             kotlinAndroid {
                 explicitApi()
                 configureKotlinCommon(this)
-                useDataStoreCryptoInternalApi()
             }
             android<LibraryExtension> {
                 configureAndroidCommon()
@@ -30,6 +29,7 @@ class AndroidLibraryPlugin : Plugin<Project> {
 
             configureLicenseCheck()
             configureLint()
+            useDataStoreCryptoInternalApi()
         }
     }
 }

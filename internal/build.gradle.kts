@@ -1,3 +1,3 @@
 plugins {
-    alias(libs.plugins.datastore.crypto.kotlin.library)
+    alias(libs.plugins.kotlin.jvm)
 }
