@@ -36,9 +36,5 @@ gradlePlugin {
             id = libs.plugins.datastore.crypto.kotlin.library.get().pluginId
             implementationClass = "KotlinLibraryPlugin"
         }
-        register("mavenPublish") {
-            id = libs.plugins.datastore.crypto.maven.publish.get().pluginId
-            implementationClass = "MavenPublishingPlugin"
-        }
     }
 }

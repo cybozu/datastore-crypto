@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.datastore.crypto.android.library)
-    alias(libs.plugins.datastore.crypto.maven.publish)
+    alias(libs.plugins.maven.publish)
 }
 
 android {
