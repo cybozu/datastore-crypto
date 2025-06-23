@@ -1,6 +1,6 @@
 package com.cybozu.datastore.crypto
 
-import com.cybozu.datastore.crypto.internal.DataStoreCryptoInternalApi
+import com.cybozu.datastore.crypto.DataStoreCryptoInternalApi
 import com.cybozu.datastore.crypto.keyset.KeysetDataStore
 import com.cybozu.datastore.crypto.keyset.KeysetProvider
 import com.google.crypto.tink.Aead

@@ -12,8 +12,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":internal"))
-
     api(libs.androidx.datastore)
     implementation(libs.tink.android)
 

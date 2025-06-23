@@ -25,4 +25,3 @@ rootProject.name = "DataStore Crypto"
 include(":datastore-crypto")
 include(":datastore-crypto-preferences")
 include(":datastore-testing")
-include(":internal")
