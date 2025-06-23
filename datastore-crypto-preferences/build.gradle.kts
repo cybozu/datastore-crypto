@@ -1,3 +1,5 @@
+import com.cybozu.datastore.crypto.buildlogic.convention.useDataStoreCryptoInternalApi
+
 plugins {
     alias(libs.plugins.datastore.crypto.android.library)
     alias(libs.plugins.maven.publish)
@@ -21,3 +23,5 @@ dependencies {
     androidTestImplementation(libs.kotest.assertions.core)
     androidTestImplementation(libs.kotlinx.coroutines.test)
 }
+
+useDataStoreCryptoInternalApi()

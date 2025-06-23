@@ -1,4 +1,4 @@
-package com.cybozu.datastore.crypto.internal
+package com.cybozu.datastore.crypto
 
 @Target(AnnotationTarget.TYPEALIAS, AnnotationTarget.FUNCTION, AnnotationTarget.CLASS, AnnotationTarget.CONSTRUCTOR)
 @RequiresOptIn(

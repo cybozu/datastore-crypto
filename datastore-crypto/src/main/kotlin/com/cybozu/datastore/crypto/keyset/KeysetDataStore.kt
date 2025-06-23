@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
-import com.cybozu.datastore.crypto.internal.DataStoreCryptoInternalApi
+import com.cybozu.datastore.crypto.DataStoreCryptoInternalApi
 import com.google.crypto.tink.integration.android.AndroidKeystore
 import com.google.crypto.tink.subtle.Hex
 import java.io.InputStream
