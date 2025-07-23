@@ -1,8 +1,8 @@
 [versions]
-androidGradlePlugin = "8.10.0"
-kotlin = "2.1.21"
+androidGradlePlugin = "8.11.1"
+kotlin = "2.2.0"
 
-dataStore = "1.1.6"
+dataStore = "1.1.7"
 
 licensee = "1.13.0"
 ktlint = "1.5.0"
@@ -13,7 +13,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version = "1.1
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "dataStore" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
 
-tink-android = { group = "com.google.crypto.tink", name = "tink-android", version = "1.17.0" }
+tink-android = { group = "com.google.crypto.tink", name = "tink-android", version = "1.18.0" }
 
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version = "1.10.2" }
 
@@ -35,7 +35,7 @@ ktlint-gradle-plugin = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.32.0" }
+maven-publish = { id = "com.vanniktech.maven.publish", version = "0.34.0" }
 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
