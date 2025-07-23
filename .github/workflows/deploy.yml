@@ -8,7 +8,7 @@ on:
 
 
 jobs:
-  maven_central:
+  deploy_maven_central:
     name: Publish and release to maven central
     runs-on: ubuntu-latest
 
