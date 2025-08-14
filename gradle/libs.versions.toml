@@ -9,7 +9,7 @@ ktlint = "1.5.0"
 ktlintGradle = "12.2.0"
 
 [libraries]
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version = "1.16.0" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version = "1.17.0" }
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "dataStore" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
 
