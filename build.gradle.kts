@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.ktlint.gradle) apply false
     alias(libs.plugins.licensee) apply false
     alias(libs.plugins.maven.publish) apply false
+    alias(libs.plugins.kotlin.compose) apply false
 }
 
 fun registerCompositeTask(taskName: String, taskGroup: String, taskDescription: String) {
