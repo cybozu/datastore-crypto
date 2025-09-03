@@ -23,6 +23,9 @@ DataStore Crypto is suitable for storing sensitive information such as tokens, c
 
 ## Usage
 
+### Requirements
+Android 8.1 (API level 27) or higher
+
 ### Downloads
 ![Maven Central Version](https://img.shields.io/maven-central/v/com.cybozu.datastore.crypto/datastore-crypto)
 
