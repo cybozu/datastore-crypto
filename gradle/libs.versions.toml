@@ -19,7 +19,7 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 
 # test frameworks
 junit = { group = "junit", name = "junit", version = "4.13.2" }
-kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core", version = "5.9.1" }
+kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core", version = "6.0.2" }
 robolectric = { group = "org.robolectric", name = "robolectric", version = "4.14.1" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version = "1.6.2" }
 androidx-test-rules = { group = "androidx.test", name = "rules", version = "1.6.1" }
