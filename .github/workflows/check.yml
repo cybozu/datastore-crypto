@@ -21,7 +21,7 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/actions/setup-java
       - uses: gradle/actions/setup-gradle@v4
 
@@ -68,7 +68,7 @@ jobs:
           docker-images: false # Takes 16s, enable if needed in the future
           large-packages: false # includes google-cloud-sdk and it's slow
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/actions/setup-java
       - uses: gradle/actions/setup-gradle@v4
 
