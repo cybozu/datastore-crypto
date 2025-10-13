@@ -39,42 +39,6 @@ import com.example.sample.ui.theme.DataStoreCryptoTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-/** Example of using Preferences DataStore */
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings_by_datastore")
-val TEXT_KEY = stringPreferencesKey("saved_text")
-
-suspend fun saveToDataStore(saveText: String, context: Context): Unit = withContext(Dispatchers.IO) {
-    context.dataStore.edit { preferences ->
-        preferences[TEXT_KEY] = saveText
-    }
-}
-
-suspend fun readFromDataStore(context: Context): String = withContext(Dispatchers.IO) {
-    context.dataStore.data
-        .map { preferences -> preferences[TEXT_KEY] ?: "" }
-        .first()
-}
-
-
-/** Example of using Preferences DataStore */
-val TEXT_KEY_CRYPTO = stringPreferencesKey("saved_text_crypto")
-val Context.encryptedUserPrefs by encryptedPreferencesDataStore(
-    name = "setting_by_datastore-crypto",
-    masterKeyAlias = "setting_by_datastore-crypto_key"
-)
-
-
-suspend fun saveToEncryptedDataStore(saveText: String, context: Context): Unit = withContext(Dispatchers.IO) {
-    context.encryptedUserPrefs.edit { prefs ->
-        prefs[TEXT_KEY_CRYPTO] = saveText
-    }
-}
-
-suspend fun readFromEncryptedDataStore(context: Context): String = withContext(Dispatchers.IO) {
-    context.encryptedUserPrefs.data
-        .map { preferences -> preferences[TEXT_KEY_CRYPTO] ?: "" }
-        .first()
-}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,6 +61,9 @@ fun SampleScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
+    val dataStoreRepository = remember { DataStoreRepository(context) }
+    val encryptedDataStoreRepository = remember { EncryptedDataStoreRepository(context) }
+
     var inputText by remember { mutableStateOf("") }
     var resultText by remember { mutableStateOf("") }
 
@@ -116,12 +83,12 @@ fun SampleScreen(modifier: Modifier = Modifier) {
             onInputTextChange = { inputText = it },
             onWriteClick = {
                 scope.launch {
-                    saveToDataStore(inputText, context)
+                    dataStoreRepository.save(inputText)
                 }
             },
             onReadClick = {
                 scope.launch {
-                    resultText = readFromDataStore(context)
+                    resultText = dataStoreRepository.read()
                 }
             }
         )
@@ -134,12 +101,12 @@ fun SampleScreen(modifier: Modifier = Modifier) {
             onInputTextChange = { encryptedInputText = it },
             onWriteClick = {
                 scope.launch {
-                    saveToEncryptedDataStore(encryptedInputText, context)
+                    encryptedDataStoreRepository.save(encryptedInputText)
                 }
             },
             onReadClick = {
                 scope.launch {
-                    encryptedResultText = readFromEncryptedDataStore(context)
+                    encryptedResultText = encryptedDataStoreRepository.read()
                 }
             }
         )
@@ -180,6 +147,48 @@ fun SampleContent(
         Text(
             text = "result: $resultText",
         )
+    }
+}
+
+
+/** Example of using Preferences DataStore */
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings_by_datastore")
+
+class DataStoreRepository(private val context: Context) {
+    private val textKey = stringPreferencesKey("saved_text")
+
+    suspend fun save(saveText: String): Unit = withContext(Dispatchers.IO) {
+        context.dataStore.edit { preferences ->
+            preferences[textKey] = saveText
+        }
+    }
+
+    suspend fun read(): String = withContext(Dispatchers.IO) {
+        context.dataStore.data
+            .map { preferences -> preferences[textKey] ?: "" }
+            .first()
+    }
+}
+
+/** Example of using Encrypted Preferences DataStore */
+val Context.encryptedUserPrefs by encryptedPreferencesDataStore(
+    name = "setting_by_datastore-crypto",
+    masterKeyAlias = "setting_by_datastore-crypto_key"
+)
+
+class EncryptedDataStoreRepository(private val context: Context) {
+    private val textKeyCrypto = stringPreferencesKey("saved_text_crypto")
+
+    suspend fun save(saveText: String): Unit = withContext(Dispatchers.IO) {
+        context.encryptedUserPrefs.edit { prefs ->
+            prefs[textKeyCrypto] = saveText
+        }
+    }
+
+    suspend fun read(): String = withContext(Dispatchers.IO) {
+        context.encryptedUserPrefs.data
+            .map { preferences -> preferences[textKeyCrypto] ?: "" }
+            .first()
     }
 }
 
