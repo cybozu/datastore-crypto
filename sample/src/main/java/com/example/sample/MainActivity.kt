@@ -26,11 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import com.cybozu.datastore.crypto.preferences.encryptedPreferencesDataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -61,11 +58,7 @@ fun SampleScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
-    val dataStoreRepository = remember { DataStoreRepository(context) }
     val encryptedDataStoreRepository = remember { EncryptedDataStoreRepository(context) }
-
-    var inputText by remember { mutableStateOf("") }
-    var resultText by remember { mutableStateOf("") }
 
     var encryptedInputText by remember { mutableStateOf("") }
     var encryptedResultText by remember { mutableStateOf("") }
@@ -75,24 +68,6 @@ fun SampleScreen(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        SampleContent(
-            modifier = Modifier,
-            description = "Preferences DataStore",
-            inputText = inputText,
-            resultText = resultText,
-            onInputTextChange = { inputText = it },
-            onWriteClick = {
-                scope.launch {
-                    dataStoreRepository.save(inputText)
-                }
-            },
-            onReadClick = {
-                scope.launch {
-                    resultText = dataStoreRepository.read()
-                }
-            }
-        )
-
         SampleContent(
             modifier = Modifier,
             description = "Encrypted Preferences DataStore",
@@ -150,26 +125,6 @@ fun SampleContent(
     }
 }
 
-
-/** Example of using Preferences DataStore */
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings_by_datastore")
-
-class DataStoreRepository(private val context: Context) {
-    private val textKey = stringPreferencesKey("saved_text")
-
-    suspend fun save(saveText: String): Unit = withContext(Dispatchers.IO) {
-        context.dataStore.edit { preferences ->
-            preferences[textKey] = saveText
-        }
-    }
-
-    suspend fun read(): String = withContext(Dispatchers.IO) {
-        context.dataStore.data
-            .map { preferences -> preferences[textKey] ?: "" }
-            .first()
-    }
-}
-
 /** Example of using Encrypted Preferences DataStore */
 val Context.encryptedUserPrefs by encryptedPreferencesDataStore(
     name = "setting_by_datastore-crypto",
@@ -194,7 +149,7 @@ class EncryptedDataStoreRepository(private val context: Context) {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun SampleContentPreview() {
     DataStoreCryptoTheme {
         SampleScreen()
     }
