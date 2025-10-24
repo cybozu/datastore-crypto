@@ -21,7 +21,69 @@ The API is designed to be simple and compatible with AndroidX DataStore, making 
 ### Use Cases
 DataStore Crypto is suitable for storing sensitive information such as tokens, credentials, and user settings that require confidentiality and integrity.
 
-## Getting Started
-Add this library to your project and use the provided APIs to create encrypted DataStore instances for your application data.
+## Usage
 
-TODO: code sample
+### Requirements
+Android 8.1 (API level 27) or higher
+
+### Downloads
+![Maven Central Version](https://img.shields.io/maven-central/v/com.cybozu.datastore.crypto/datastore-crypto)
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Preferences DataStore
+    implementation("com.cybozu.datastore.crypto:datastore-crypto-preferences:<version>")
+
+    // or
+    // Proto DataStore
+    implementation("com.cybozu.datastore.crypto:datastore-crypto:<version>")
+}
+```
+
+### Basic Setup
+DataStore Crypto provides drop-in replacements for AndroidX DataStore with automatic encryption:
+
+```kotlin
+// Preferences DataStore
+val Context.encryptedUserPrefs by encryptedPreferencesDataStore(
+    name = "user_preferences",
+    masterKeyAlias = "preferences_master_key"
+)
+
+// Proto DataStore
+val Context.encryptedUserData by encryptedDataStore(
+    fileName = "user_data.pb",
+    serializer = UserDataSerializer,
+    masterKeyAlias = "proto_master_key"
+)
+```
+
+### Automatic Encryption
+All data is automatically encrypted when written and decrypted when read. 
+You use the same DataStore API, but your data is securely stored:
+
+```kotlin
+// Writing data - automatically encrypted before saving to disk
+encryptedUserPrefs.edit { preferences ->
+    preferences[stringPreferencesKey("api_token")] = "secret_token_123"
+}
+
+// Reading data - automatically decrypted when loaded
+val token = encryptedUserPrefs.data.first()[stringPreferencesKey("api_token")]
+// token = "secret_token_123" (decrypted value)
+
+// The actual file on disk contains encrypted binary data
+val prefsFile = File(context.filesDir, "datastore/user_preferences.preferences_pb")
+// prefsFile.readText() would show encrypted binary data, not "secret_token_123"
+```
+
+### Master Key and Alias
+The master key serves as the ultimate encryption key that DataStore Crypto uses to encrypt and decrypt your data. 
+It is stored in Android Keystore, an OS-controlled secure area that applications cannot directly access. 
+Cryptographic operations using the master key are not handled directly within the app, but are delegated to and processed by the Android OS.
+
+The `masterKeyAlias` parameter serves as a unique identifier for each master key in Android Keystore.
