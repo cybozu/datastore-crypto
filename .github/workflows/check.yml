@@ -36,7 +36,7 @@ jobs:
 
       - name: Upload check results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: local-test-reports
           retention-days: 30
@@ -118,7 +118,7 @@ jobs:
 
       - name: Upload check results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: instrumented-test-reports-api-${{ matrix.api-level }}
           retention-days: 30
