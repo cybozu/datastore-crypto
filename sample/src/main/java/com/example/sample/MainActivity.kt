@@ -60,8 +60,8 @@ fun SampleScreen(modifier: Modifier = Modifier) {
 
     val encryptedDataStoreRepository = remember { EncryptedDataStoreRepository(context) }
 
-    var encryptedInputText by remember { mutableStateOf("") }
-    var encryptedResultText by remember { mutableStateOf("") }
+    var inputText by remember { mutableStateOf("") }
+    var savedText by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -71,17 +71,17 @@ fun SampleScreen(modifier: Modifier = Modifier) {
         SampleContent(
             modifier = Modifier,
             description = "Encrypted Preferences DataStore",
-            inputText = encryptedInputText,
-            resultText = encryptedResultText,
-            onInputTextChange = { encryptedInputText = it },
+            inputText = inputText,
+            savedText = savedText,
+            onInputTextChange = { inputText = it },
             onWriteClick = {
                 scope.launch {
-                    encryptedDataStoreRepository.save(encryptedInputText)
+                    encryptedDataStoreRepository.save(inputText)
                 }
             },
             onReadClick = {
                 scope.launch {
-                    encryptedResultText = encryptedDataStoreRepository.read()
+                    savedText = encryptedDataStoreRepository.read()
                 }
             }
         )
@@ -93,7 +93,7 @@ fun SampleContent(
     modifier: Modifier = Modifier,
     description: String,
     inputText: String,
-    resultText: String,
+    savedText: String,
     onInputTextChange: (String) -> Unit,
     onWriteClick: () -> Unit,
     onReadClick: () -> Unit
@@ -120,7 +120,7 @@ fun SampleContent(
             }
         }
         Text(
-            text = "result: $resultText",
+            text = "result: $savedText",
         )
     }
 }
@@ -132,17 +132,17 @@ val Context.encryptedUserPrefs by encryptedPreferencesDataStore(
 )
 
 class EncryptedDataStoreRepository(private val context: Context) {
-    private val textKeyCrypto = stringPreferencesKey("saved_text_crypto")
+    private val key = stringPreferencesKey("saved_text")
 
-    suspend fun save(saveText: String): Unit = withContext(Dispatchers.IO) {
+    suspend fun save(saveText: String) = withContext(Dispatchers.IO) {
         context.encryptedUserPrefs.edit { prefs ->
-            prefs[textKeyCrypto] = saveText
+            prefs[key] = saveText
         }
     }
 
     suspend fun read(): String = withContext(Dispatchers.IO) {
         context.encryptedUserPrefs.data
-            .map { preferences -> preferences[textKeyCrypto] ?: "" }
+            .map { preferences -> preferences[key] ?: "" }
             .first()
     }
 }
