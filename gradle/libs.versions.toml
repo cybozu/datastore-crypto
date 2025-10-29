@@ -8,8 +8,6 @@ dataStore = "1.1.7"
 licensee = "1.13.0"
 ktlint = "1.5.0"
 ktlintGradle = "12.2.0"
-junit = "1.3.0"
-espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.9.2"
 activityCompose = "1.10.1"
 composeBom = "2024.09.00"
@@ -19,10 +17,20 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version = "1.1
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "dataStore" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
 
-datastore-crypto-preferences = { module = "com.cybozu.datastore.crypto:datastore-crypto-preferences", version.ref = "datastoreCryptoPreferences" }
 tink-android = { group = "com.google.crypto.tink", name = "tink-android", version = "1.18.0" }
 
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version = "1.10.2" }
+
+# Sample App dependencies
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+datastore-crypto-preferences = { module = "com.cybozu.datastore.crypto:datastore-crypto-preferences", version.ref = "datastoreCryptoPreferences" }
 
 # test frameworks
 junit = { group = "junit", name = "junit", version = "4.13.2" }
@@ -38,18 +46,7 @@ android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", ve
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 licensee-gradle-plugin = { group = "app.cash.licensee", name = "licensee-gradle-plugin", version.ref = "licensee" }
 ktlint-gradle-plugin = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref = "ktlintGradle" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-ui = { group = "androidx.compose.ui", name = "ui" }
-androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -58,6 +55,7 @@ maven-publish = { id = "com.vanniktech.maven.publish", version = "0.34.0" }
 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 ktlint-gradle = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintGradle" }
 licensee = { id = "app.cash.licensee", version.ref = "licensee" }
@@ -65,7 +63,6 @@ licensee = { id = "app.cash.licensee", version.ref = "licensee" }
 datastore-crypto-android-application = { id = "com.cybozu.datastore.crypto.android.application" }
 datastore-crypto-android-library = { id = "com.cybozu.datastore.crypto.android.library" }
 datastore-crypto-kotlin-library = { id = "com.cybozu.datastore.crypto.kotlin.library" }
-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 [bundles]
 robolectric-junit-test = [
