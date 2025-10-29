@@ -29,13 +29,12 @@ import androidx.compose.ui.unit.dp
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.cybozu.datastore.crypto.preferences.encryptedPreferencesDataStore
+import com.example.sample.ui.theme.DataStoreCryptoTheme
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import com.example.sample.ui.theme.DataStoreCryptoTheme
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,7 +95,7 @@ fun SampleContent(
     savedText: String,
     onInputTextChange: (String) -> Unit,
     onWriteClick: () -> Unit,
-    onReadClick: () -> Unit
+    onReadClick: () -> Unit,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -120,7 +119,7 @@ fun SampleContent(
             }
         }
         Text(
-            text = "result: $savedText",
+            text = "result: $savedText"
         )
     }
 }

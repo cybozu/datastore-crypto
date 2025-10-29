@@ -41,5 +41,4 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     debugImplementation(libs.androidx.ui.tooling)
     implementation(libs.datastore.crypto.preferences)
-
 }
