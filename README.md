@@ -1,9 +1,7 @@
 # DataStore Crypto
 
 > [!IMPORTANT]
-> **Official encryption support is now available in AndroidX DataStore.**
-> As of [`androidx.datastore:datastore-tink` 1.3.0-alpha07](https://developer.android.com/jetpack/androidx/releases/datastore#1.3.0-alpha07), DataStore officially supports encryption via Tink's `AeadSerializer`. For new projects, we recommend using the official artifact.
-> This library will **not** receive new features and will be maintained for the time being only. See [Official Support](#official-support) for details.
+> **Official encryption support is now available in AndroidX DataStore.** For new projects, we recommend using the official artifact. This library will not receive new features and is in maintenance mode. See [Official Support](#official-support) for details.
 
 DataStore Crypto is a Kotlin library for Android that provides encrypted [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) implementations. It was originally created as a response to the Feature Request for encrypted DataStore support in DataStore (see: [Feature Request: Support for encryption in Datastore](https://issuetracker.google.com/issues/167697691)), which has since been resolved by official support.
 
