@@ -1,8 +1,25 @@
 # DataStore Crypto
 
-DataStore Crypto is a Kotlin library for Android that provides encrypted [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) implementations. It is designed as a response to the Feature Request for encrypted DataStore support in DataStore (see: [Feature Request: Support for encryption in Datastore](https://issuetracker.google.com/issues/167697691)).
+> [!IMPORTANT]
+> **Official encryption support is now available in AndroidX DataStore.** For new projects, we recommend using the official artifact. This library will not receive new features and is in maintenance mode. See [Official Support](#official-support) for details.
+
+DataStore Crypto is a Kotlin library for Android that provides encrypted [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) implementations. It was originally created as a response to the Feature Request for encrypted DataStore support in DataStore (see: [Feature Request: Support for encryption in Datastore](https://issuetracker.google.com/issues/167697691)), which has since been resolved by official support.
 
 It enables secure storage of key-value and typed data using DataStore, with transparent encryption and decryption of data at rest.
+
+## Official Support
+
+When this library was created, DataStore had no built-in encryption support, which was tracked in [Feature Request: Support for encryption in Datastore](https://issuetracker.google.com/issues/167697691). That request has now been addressed: starting with [`androidx.datastore:datastore-tink` 1.3.0-alpha07](https://developer.android.com/jetpack/androidx/releases/datastore#1.3.0-alpha07), DataStore officially supports encryption.
+
+The official module provides `AeadSerializer`, a `Serializer<T>` wrapper that uses [Tink](https://github.com/tink-crypto/tink-java)'s Authenticated Encryption with Associated Data (AEAD) to encrypt and decrypt data — the same cryptographic library used by DataStore Crypto. It is available on both JVM and Android platforms.
+
+For installation and usage, refer to the official [DataStore release notes](https://developer.android.com/jetpack/androidx/releases/datastore#1.3.0-alpha07).
+
+### Maintenance Policy
+
+- **No new features are planned** for this library.
+- It will continue to receive maintenance (bug fixes, dependency updates, etc.) **for the time being**.
+- New projects are encouraged to use the official `androidx.datastore:datastore-tink` artifact, and existing users are encouraged to consider migrating to it.
 
 ## Features
 
