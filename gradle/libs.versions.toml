@@ -1,7 +1,7 @@
 [versions]
 androidGradlePlugin = "8.13.0"
 datastoreCryptoPreferences = "0.2.0"
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 
 dataStore = "1.1.7"
 
